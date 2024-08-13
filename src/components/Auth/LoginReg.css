@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+ 
+
+.shopping-container {
+ 
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.shopping-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.shopping-title::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -8px;
+    height: 4px;
+    width: 40px;
+    background: #ff5e5e;
+    border-radius: 2px;
+}
+
+.shopping-input-boxes {
+    margin-top: 25px;
+}
+
+.shopping-input-box {
+    width: 100%;
+    height: 50px;
+    background: #f7f7f7;
+    margin: 10px 0;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.3s;
+}
+
+.shopping-input-box i {
+    color: #ff5e5e;
+    font-size: 18px;
+}
+
+.shopping-input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #333;
+    margin-left: 10px;
+}
+
+.shopping-input-box input:focus {
+    border-bottom: 2px solid #ff5e5e;
+}
+
+.shopping-button input[type="submit"] {
+    width: 100%;
+    height: 50px;
+    background: #ff5e5e;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.shopping-button input[type="submit"]:hover {
+    background: #e14a4a;
+}
+
+.shopping-text {
+    font-size: 14px;
+    color: #333;
+    margin-top: 20px;
+}
+
+.shopping-text a {
+    color: #ff5e5e;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.shopping-text a:hover {
+    text-decoration: underline;
+}
+
+.shopping-sign-up-text {
+    margin-top: 5px;
+}
+
+/* For the tab content switching */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+
+/* #D31E27 */
