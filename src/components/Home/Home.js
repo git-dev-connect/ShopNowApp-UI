@@ -10,18 +10,98 @@ const Home = () => {
 
 
             <Box>
-                <Box sx={{ display: 'flex', justifyContent: 'center',margin: '65px 0px 60px'}}>
+                <Box sx={{ display: 'flex', justifyContent: 'center', margin: '65px 0px 60px' }}>
                     <Box sx={{}}>
-                        <div style={{paddingRight: '45px',marginTop :'15px'}}>
-                        <span style={{ fontSize: '48px',display :'flex' }}>Best Prices</span>
-                        <span style={{ fontSize: '48px' }}>Best Quality Shop</span>
+                        <div style={{ paddingRight: '45px', marginTop: '15px' }}>
+                            <span style={{ fontSize: '48px', display: 'flex' }}>Best Prices</span>
+                            <span style={{ fontSize: '48px' }}>Best Quality Shop</span>
                         </div>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap:'30px',
+                                backgroundColor: 'white',
+                                padding: 2,
+                            }}
+                        >
+                            {/* Free Delivery */}
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <img
+                                    alt="Free Delivery"
+                                    src="https://images.meesho.com/images/pow/freeDelivery_jamun.svg"
+                                    width={32}
+                                    height={32}
+                                    style={{ color: 'transparent' }}
+                                />
+                                <Typography
+                                    variant="body2"
+                                    sx={{ fontWeight: 'medium', color: 'grey', fontSize: '16px', marginTop: 1 }}
+                                >
+                                    Free Delivery
+                                </Typography>
+                            </Box>
+
+                            {/* Cash on Delivery */}
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <img
+                                    alt="Cash on Delivery"
+                                    src="https://images.meesho.com/images/pow/cod_jamun.svg"
+                                    width={32}
+                                    height={32}
+                                    style={{ color: 'transparent' }}
+                                />
+                                <Typography
+                                    variant="body2"
+                                    sx={{ fontWeight: 'medium', color: 'grey', fontSize: '16px', marginTop: 1 }}
+                                >
+                                    Cash on Delivery
+                                </Typography>
+                            </Box>
+
+                            {/* Easy Returns */}
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <img
+                                    alt="Easy Returns"
+                                    src="https://images.meesho.com/images/pow/easyReturns_jamun.svg"
+                                    width={32}
+                                    height={32}
+                                    style={{ color: 'transparent' }}
+                                />
+                                <Typography
+                                    variant="body2"
+                                    sx={{ fontWeight: 'medium', color: 'grey', fontSize: '16px', marginTop: 1 }}
+                                >
+                                    Easy Returns
+                                </Typography>
+                            </Box>
+                        </Box>
                     </Box>
                     <Box>
-                        <img src='https://images.meesho.com/images/marketing/1722839152228_512.webp' alt=""/>
+                        <img src='https://images.meesho.com/images/marketing/1722839152228_512.webp' alt="" />
                     </Box>
-                    
+
                 </Box>
+
+
             </Box>
         </div>
 
