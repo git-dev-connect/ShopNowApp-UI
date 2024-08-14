@@ -12,8 +12,8 @@ const Home = () => {
             <Box>
                 <Box sx={{ display: 'flex', justifyContent: 'center', margin: '65px 0px 60px' }}>
                     <Box sx={{}}>
-                        <div style={{ paddingRight: '45px', marginTop: '15px' }}>
-                            <span style={{ fontSize: '48px', display: 'flex' }}>Best Prices</span>
+                        <div style={{ paddingRight: '200px', marginTop: '15px',fontWeight:'900' }}>
+                            <span style={{ fontSize: '48px', display: 'flex',fontWeight:'900' }}>Best Prices</span>
                             <span style={{ fontSize: '48px' }}>Best Quality Shop</span>
                         </div>
                         <Box
@@ -25,7 +25,6 @@ const Home = () => {
                                 padding: 2,
                             }}
                         >
-                            {/* Free Delivery */}
                             <Box
                                 sx={{
                                     display: 'flex',
@@ -36,7 +35,7 @@ const Home = () => {
                                 <img
                                     alt="Free Delivery"
                                     src="https://images.meesho.com/images/pow/freeDelivery_jamun.svg"
-                                    width={32}
+                                    width={88}
                                     height={32}
                                     style={{ color: 'transparent' }}
                                 />
@@ -96,7 +95,7 @@ const Home = () => {
                         </Box>
                     </Box>
                     <Box>
-                        <img src='https://images.meesho.com/images/marketing/1722839152228_512.webp' alt="" />
+                        <img style={{width:'88vh'}} src='https://images.meesho.com/images/marketing/1722839152228_512.webp' alt="" />
                     </Box>
 
                 </Box>
