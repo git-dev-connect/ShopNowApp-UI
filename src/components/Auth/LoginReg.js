@@ -39,6 +39,8 @@ function LoginReg({setIsLoggedIn }) {
             }
         } catch (error) {
             console.log("error in login");
+            document.getElementById("loginFailed").innerText="Invalid login details";
+
         }
 
     };
@@ -86,6 +88,7 @@ function LoginReg({setIsLoggedIn }) {
                                         <div className="shopping-button input-box">
                                             <input type="submit" value="Login" />
                                         </div>
+                                        <p id="loginFailed" style={{color :'#ff5e5e'}}></p>
                                         <div className="shopping-text sign-up-text">
                                             Don't have an account?
                                             <a href="#" onClick={() => handleTabChange('signup')}>Signup now</a>
