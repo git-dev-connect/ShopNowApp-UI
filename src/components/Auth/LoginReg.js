@@ -39,7 +39,7 @@ function LoginReg({setIsLoggedIn }) {
             }
         } catch (error) {
             console.log("error in login");
-            document.getElementById("loginFailed").innerText="Invalid login details";
+            // document.getElementById("loginFailed").innerText="Invalid login details";
 
         }
 
