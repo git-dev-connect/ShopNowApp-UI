@@ -4,20 +4,24 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import LoginReg from './components/Auth/LoginReg';
 import Home from './components/Home/Home';
 import { useState } from 'react';
+
+
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => localStorage.getItem("isLoggedIn") === 'true');
 
   return (
     <div className="App">
       <Router>
+        
         <Routes>
           <Route
             path="/"
-            element={<LoginReg setIsLoggedIn={setIsLoggedIn} />}  
+            element={<LoginReg setIsLoggedIn={setIsLoggedIn} />}
           />
           <Route
             path="/home"
-            element={isLoggedIn ? <Home /> : <Navigate to="/" />}
+            element={isLoggedIn ? <Home setIsLoggedIn={setIsLoggedIn} /> : <Navigate to="/" />}
           />
 
         </Routes>

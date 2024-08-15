@@ -2,8 +2,19 @@ import React from 'react';
 import NavBar from '../NavBar.js/NavBar';
 import { Container, Box, Typography, Button } from '@mui/material';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ProductCard from './ProductCard'; 
-const Home = () => {
+import ProductCard from './ProductCard';
+import { useNavigate } from 'react-router-dom';
+
+const Home = ({ setIsLoggedIn }) => {
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        // Clear the isLoggedIn state and remove token from local storage
+        setIsLoggedIn(false);
+        localStorage.removeItem("isLoggedIn");
+        // Navigate back to the login page
+        navigate("/");
+    };
 
     const products = [
         { id: 1, name: 'Product 1', description: 'Description of product 1', price: '29.99', image: 'https://images.meesho.com/images/products/25515256/a6300_512.webp' },
@@ -42,7 +53,7 @@ const Home = () => {
     ];
     return (
         <div>
-            <NavBar />
+              <NavBar setIsLoggedIn={setIsLoggedIn} />
 
 
             <Box>
@@ -135,6 +146,8 @@ const Home = () => {
                     </Box>
 
                 </Box>
+
+
                 {/* Product Cards Section */}
                 <Container sx={{ marginTop: '50px' }}>
                     <Typography variant="h4" sx={{ marginBottom: '20px', fontWeight: 'bold', textAlign: 'center' }}>
