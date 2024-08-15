@@ -147,7 +147,6 @@ const Home = ({ setIsLoggedIn }) => {
 
                 </Box>
 
-
                 {/* Product Cards Section */}
                 <Container sx={{ marginTop: '50px' }}>
                     <Typography variant="h4" sx={{ marginBottom: '20px', fontWeight: 'bold', textAlign: 'center' }}>

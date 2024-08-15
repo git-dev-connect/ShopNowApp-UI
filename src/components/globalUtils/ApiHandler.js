@@ -13,7 +13,8 @@ function basicAuth(user) {
 
 export const apiService = {
   login,
-  test
+  test,
+  signup
 };
 
 function login(username, password) {
@@ -28,5 +29,10 @@ function login(username, password) {
     });
   }
   
+ function signup(signupData) {
+  return instance.post('/signup', signupData, {
+    headers: { 'Content-Type': 'application/json' }
+  });
+}
 
 

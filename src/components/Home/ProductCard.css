@@ -1,7 +1,9 @@
 /* src/components/ProductCard.css */
 .product-card {
     border: 0px solid #a19090;
-    border-radius: 8px;
+    border-top: 1px solid #d6cdcd;
+    border-left: 1px solid #d6cdcd;
+    border-radius: 3px;
     padding: 16px;
     margin: 7px 2px;
     text-align: left;
