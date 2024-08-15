@@ -90,8 +90,8 @@ function LoginReg({setIsLoggedIn }) {
                                         </div>
                                         <p id="loginFailed" style={{color :'#ff5e5e'}}></p>
                                         <div className="shopping-text sign-up-text">
-                                            Don't have an account?
-                                            <a href="#" onClick={() => handleTabChange('signup')}>Signup now</a>
+                                            Don't have an account? 
+                                            <a href="#" onClick={() => handleTabChange('signup')}> Signup now</a>
                                         </div>
                                     </div>
                                 </form>
@@ -140,7 +140,7 @@ function LoginReg({setIsLoggedIn }) {
                                         </div>
                                         <div className="shopping-text sign-up-text">
                                             Already have an account?
-                                            <a href="#" onClick={() => handleTabChange('login')}>Login now</a>
+                                            <a href="#" onClick={() => handleTabChange('login')}> Login now</a>
                                         </div>
                                     </div>
                                 </form>

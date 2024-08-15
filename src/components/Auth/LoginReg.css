@@ -9,7 +9,8 @@
  
 
 .shopping-container {
- 
+    /* added by vicky */
+    margin-top: 80px; 
     background: rgba(255, 255, 255, 0.9);
     padding: 30px;
     border-radius: 15px;
@@ -18,7 +19,7 @@
 }
 
 .shopping-title {
-    font-size: 28px;
+    font-size: 22px;
     font-weight: bold;
     color: #333;
     margin-bottom: 20px;
