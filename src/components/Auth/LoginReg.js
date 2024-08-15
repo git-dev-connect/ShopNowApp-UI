@@ -5,10 +5,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 
-function LoginReg({setIsLoggedIn }) {
+function LoginReg({ setIsLoggedIn }) {
     const [activeTab, setActiveTab] = useState('login');
     const [loginData, setLoginData] = useState({ username: '', password: '' });
     const [signupData, setSignupData] = useState({ name: '', email: '', password: '' });
+    const [loginError, setLoginError] = useState('');
     const navigate = useNavigate();
 
 
@@ -19,6 +20,7 @@ function LoginReg({setIsLoggedIn }) {
     const handleLoginChange = (e) => {
         const { name, value } = e.target;
         setLoginData(prevData => ({ ...prevData, [name]: value }));
+        setLoginError('');
     };
 
     const handleSignupChange = (e) => {
@@ -32,14 +34,15 @@ function LoginReg({setIsLoggedIn }) {
 
         try {
             const response = await apiService.login(loginData.username, loginData.password);
-            if(response.status===200){
-                setIsLoggedIn (true);
+            if (response.status === 200) {
+                setIsLoggedIn(true);
                 navigate("/home");
-                localStorage.setItem("isLoggedIn",'true');
+                localStorage.setItem("isLoggedIn", 'true');
             }
         } catch (error) {
-            console.log("error in login");
-            // document.getElementById("loginFailed").innerText="Invalid login details";
+            console.log("Invalid Crdencials - UNAUTHORIZED USER");
+            // document.getElementById("loginFailed").innerText = "Invalid Crdencials";
+            setLoginError("Invalid Credentials");
 
         }
 
@@ -63,12 +66,12 @@ function LoginReg({setIsLoggedIn }) {
                                 <div className="shopping-title">Login</div>
                                 <form onSubmit={handleLoginSubmit}>
                                     <div className="shopping-input-boxes">
-                                        <div className="shopping-input-box">
+                                        <div className="shopping-input-box">                               
                                             <i className="fas fa-envelope"></i>
                                             <input
                                                 type="text"
                                                 name="username"
-                                                placeholder="Enter your email"
+                                                placeholder="Enter usrname"
                                                 value={loginData.email}
                                                 onChange={handleLoginChange}
                                                 required
@@ -79,18 +82,21 @@ function LoginReg({setIsLoggedIn }) {
                                             <input
                                                 type="password"
                                                 name="password"
-                                                placeholder="Enter your password"
+                                                placeholder="Enter password"
                                                 value={loginData.password}
                                                 onChange={handleLoginChange}
                                                 required
                                             />
                                         </div>
+                                        <p id="loginFailed" style={{ color: '#ff5e5e', textAlign: 'left' }}>
+                                            {loginError}
+                                        </p>
                                         <div className="shopping-button input-box">
                                             <input type="submit" value="Login" />
                                         </div>
-                                        <p id="loginFailed" style={{color :'#ff5e5e'}}></p>
+
                                         <div className="shopping-text sign-up-text">
-                                            Don't have an account? 
+                                            Don't have an account?
                                             <a href="#" onClick={() => handleTabChange('signup')}> Signup now</a>
                                         </div>
                                     </div>
@@ -134,7 +140,7 @@ function LoginReg({setIsLoggedIn }) {
                                                 onChange={handleSignupChange}
                                                 required
                                             />
-                                        </div>
+                                        </div>1
                                         <div className="shopping-button input-box">
                                             <input type="submit" value="Signup" />
                                         </div>
