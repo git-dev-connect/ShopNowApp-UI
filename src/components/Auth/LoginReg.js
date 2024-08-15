@@ -88,7 +88,7 @@ function LoginReg({ setIsLoggedIn }) {
                                                 required
                                             />
                                         </div>
-                                        <p id="loginFailed" style={{ color: '#ff5e5e', textAlign: 'left' }}>
+                                        <p id="loginFailed" style={{ color: 'red', textAlign: 'left' }}>
                                             {loginError}
                                         </p>
                                         <div className="shopping-button input-box">
