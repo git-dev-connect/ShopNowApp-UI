@@ -28,6 +28,8 @@ function LoginReg({ setIsLoggedIn }) {
         setSignupData(prevData => ({ ...prevData, [name]: value }));
     };
 
+  
+
     const handleLoginSubmit = async (e) => {
         e.preventDefault();
         console.log('Login Credentials:', loginData.username, loginData.password);
@@ -36,6 +38,8 @@ function LoginReg({ setIsLoggedIn }) {
             const response = await apiService.login(loginData.username, loginData.password);
             if (response.status === 200) {
                 setIsLoggedIn(true);
+                localStorage.setItem('username', loginData.username);
+                localStorage.setItem('password', loginData.password);
                 navigate("/home");
                 localStorage.setItem("isLoggedIn", 'true');
             }
@@ -46,7 +50,7 @@ function LoginReg({ setIsLoggedIn }) {
 
         }
 
-    };
+    };
 
     const handleSignupSubmit = async (e) => {
         e.preventDefault();
