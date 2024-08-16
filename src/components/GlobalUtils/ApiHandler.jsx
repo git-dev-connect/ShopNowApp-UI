@@ -22,7 +22,9 @@ function basicAuth() {
 // API Service
 export const apiService = {
   login,
+  signup,
   test,
+  fetchProducts,
 };
 
 // Login function
@@ -44,3 +46,11 @@ function signup(signupData) {
     headers: { 'Content-Type': 'application/json' }
   });
 }
+
+function fetchProducts() {
+  return instance.get('api/v1/products/getAllProducts', {
+    headers: { 'Authorization': basicAuth() }
+  });
+}
+
+
