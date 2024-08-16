@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './LoginReg.css';
-import { apiService } from '../globalUtils/ApiHandler';
+import '../styles/LoginReg.css';
+import { apiService } from '../GlobalUtils/ApiHandler';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navigate, useNavigate } from 'react-router-dom';
 

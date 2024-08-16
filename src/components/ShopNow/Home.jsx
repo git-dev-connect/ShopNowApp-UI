@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBar from '../NavBar.js/NavBar';
+import NavBar from './NavBar';
 import { Container, Box, Typography, Button } from '@mui/material';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProductCard from './ProductCard';
@@ -17,7 +17,7 @@ const Home = ({ setIsLoggedIn }) => {
     };
 
     const products = [
-        { id: 1, name: 'Product 1', description: 'Description of product 1', price: '29.99', image: 'https://images.meesho.com/images/products/25515256/a6300_512.webp' },
+        { id: 500, name: 'Product 1', description: 'Description of product 1', price: '29.99', image: 'https://images.meesho.com/images/products/25515256/a6300_512.webp' },
         { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/149704760/xrxm0_512.webp' },
         { id: 1, name: 'Product 1', description: 'Description of product 1', price: '29.99', image: 'https://images.meesho.com/images/products/6132709/0a7xr_512.webp' },
         { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
@@ -51,9 +51,11 @@ const Home = ({ setIsLoggedIn }) => {
 
 
     ];
+
+ 
     return (
         <div>
-              <NavBar setIsLoggedIn={setIsLoggedIn} />
+            <NavBar setIsLoggedIn={setIsLoggedIn} />
 
 
             <Box>
@@ -154,7 +156,9 @@ const Home = ({ setIsLoggedIn }) => {
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
                         {products.map(product => (
-                            <ProductCard key={product.id} product={product} />
+                            <div onClick={() => navigate(`/viewPrd/${product.id}`)}>
+                                <ProductCard key={product.id} product={product} />
+                            </div>
                         ))}
                     </Box>
                 </Container>

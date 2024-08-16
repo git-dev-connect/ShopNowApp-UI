@@ -1,6 +1,6 @@
 // src/components/ProductCard.js
 import React from 'react';
-import './ProductCard.css';
+import '../styles/ProductCard.css';
 
 function ProductCard({ product }) {
     return (

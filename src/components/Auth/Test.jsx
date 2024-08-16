@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { apiService } from '../globalUtils/ApiHandler'
+import { apiService } from '../GlobalUtils/ApiHandler'
 const Test = () => {
 const Auth = useAuth();
     const user = Auth.getUser();
