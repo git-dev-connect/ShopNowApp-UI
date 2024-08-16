@@ -1,58 +1,69 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import NavBar from './NavBar';
 import { Container, Box, Typography, Button } from '@mui/material';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProductCard from './ProductCard';
 import { useNavigate } from 'react-router-dom';
+import { apiService } from '../GlobalUtils/ApiHandler';
 
 const Home = ({ setIsLoggedIn }) => {
     const navigate = useNavigate();
+    const [products,setProducts] = useState([]);
 
-    const handleLogout = () => {
-        // Clear the isLoggedIn state and remove token from local storage
-        setIsLoggedIn(false);
-        localStorage.removeItem("isLoggedIn");
-        // Navigate back to the login page
-        navigate("/");
-    };
+    useEffect(() => {
+        try {
+            const getProducts = async () => {
+                const response = await apiService.fetchProducts();
+                if(response.status ===200){
+                    setProducts(response.data);
+                }
+                console.log(response.data);
 
-    const products = [
-        { id: 500, name: 'Product 1', description: 'Description of product 1', price: '29.99', image: 'https://images.meesho.com/images/products/25515256/a6300_512.webp' },
-        { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/149704760/xrxm0_512.webp' },
-        { id: 1, name: 'Product 1', description: 'Description of product 1', price: '29.99', image: 'https://images.meesho.com/images/products/6132709/0a7xr_512.webp' },
-        { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
-        { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
-        { id: 1, name: 'Product 1', description: 'Description of product 1', price: '29.99', image: 'https://images.meesho.com/images/products/25515256/a6300_512.webp' },
-        { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/149704760/xrxm0_512.webp' },
-        { id: 1, name: 'Product 1', description: 'Description of product 1', price: '29.99', image: 'https://images.meesho.com/images/products/6132709/0a7xr_512.webp' },
-        { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
-        { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
-        { id: 1, name: 'Product 1', description: 'Description of product 1', price: '29.99', image: 'https://images.meesho.com/images/products/25515256/a6300_512.webp' },
-        { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/149704760/xrxm0_512.webp' },
-        { id: 1, name: 'Product 1', description: 'Description of product 1', price: '29.99', image: 'https://images.meesho.com/images/products/6132709/0a7xr_512.webp' },
-        { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
-        { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
-        { id: 1, name: 'Product 1', description: 'Description of product 1', price: '29.99', image: 'https://images.meesho.com/images/products/25515256/a6300_512.webp' },
-        { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/149704760/xrxm0_512.webp' },
-        { id: 1, name: 'Product 1', description: 'Description of product 1', price: '29.99', image: 'https://images.meesho.com/images/products/6132709/0a7xr_512.webp' },
-        { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
-        { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
-        { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/149704760/xrxm0_512.webp' },
-        { id: 1, name: 'Product 1', description: 'Description of product 1', price: '29.99', image: 'https://images.meesho.com/images/products/6132709/0a7xr_512.webp' },
-        { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
-        { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
-        { id: 1, name: 'Product 1', description: 'Description of product 1', price: '29.99', image: 'https://images.meesho.com/images/products/25515256/a6300_512.webp' },
-        { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/149704760/xrxm0_512.webp' },
-        { id: 1, name: 'Product 1', description: 'Description of product 1', price: '29.99', image: 'https://images.meesho.com/images/products/6132709/0a7xr_512.webp' },
-        { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
-        { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
-        { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
+            };
+            getProducts();
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }, []);
 
 
 
-    ];
+    // const products = [
+    //     { id: 1, name: 'Product 1', description: 'Description of product 1', price: '29.99', image: 'https://images.meesho.com/images/products/25515256/a6300_512.webp' },
+    //     { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/149704760/xrxm0_512.webp' },
+    //     { id: 1, name: 'Product 1', description: 'Description of product 1', price: '29.99', image: 'https://images.meesho.com/images/products/6132709/0a7xr_512.webp' },
+    //     { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
+    //     { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
+    //     { id: 1, name: 'Product 1', description: 'Description of product 1', price: '29.99', image: 'https://images.meesho.com/images/products/25515256/a6300_512.webp' },
+    //     { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/149704760/xrxm0_512.webp' },
+    //     { id: 1, name: 'Product 1', description: 'Description of product 1', price: '29.99', image: 'https://images.meesho.com/images/products/6132709/0a7xr_512.webp' },
+    //     { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
+    //     { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
+    //     { id: 1, name: 'Product 1', description: 'Description of product 1', price: '29.99', image: 'https://images.meesho.com/images/products/25515256/a6300_512.webp' },
+    //     { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/149704760/xrxm0_512.webp' },
+    //     { id: 1, name: 'Product 1', description: 'Description of product 1', price: '29.99', image: 'https://images.meesho.com/images/products/6132709/0a7xr_512.webp' },
+    //     { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
+    //     { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
+    //     { id: 1, name: 'Product 1', description: 'Description of product 1', price: '29.99', image: 'https://images.meesho.com/images/products/25515256/a6300_512.webp' },
+    //     { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/149704760/xrxm0_512.webp' },
+    //     { id: 1, name: 'Product 1', description: 'Description of product 1', price: '29.99', image: 'https://images.meesho.com/images/products/6132709/0a7xr_512.webp' },
+    //     { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
+    //     { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
+    //     { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/149704760/xrxm0_512.webp' },
+    //     { id: 1, name: 'Product 1', description: 'Description of product 1', price: '29.99', image: 'https://images.meesho.com/images/products/6132709/0a7xr_512.webp' },
+    //     { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
+    //     { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
+    //     { id: 1, name: 'Product 1', description: 'Description of product 1', price: '29.99', image: 'https://images.meesho.com/images/products/25515256/a6300_512.webp' },
+    //     { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/149704760/xrxm0_512.webp' },
+    //     { id: 1, name: 'Product 1', description: 'Description of product 1', price: '29.99', image: 'https://images.meesho.com/images/products/6132709/0a7xr_512.webp' },
+    //     { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
+    //     { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
+    //     { id: 2, name: 'Product 2', description: 'Description of product 2', price: '49.99', image: 'https://images.meesho.com/images/products/65008217/z0l2o_512.webp' },
 
- 
+    // ];
+
+
     return (
         <div>
             <NavBar setIsLoggedIn={setIsLoggedIn} />
@@ -156,12 +167,26 @@ const Home = ({ setIsLoggedIn }) => {
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
                         {products.map(product => (
-                            <div onClick={() => navigate(`/viewPrd/${product.id}`)}>
-                                <ProductCard key={product.id} product={product} />
+                            <div onClick={() => navigate(`/viewPrd/${product.productName}`)}>
+                                <ProductCard key={product.productName} product={product} />
                             </div>
                         ))}
                     </Box>
                 </Container>
+
+                {/* Product Cards Section */}
+                {/* <Container sx={{ marginTop: '50px' }}>
+                    <Typography variant="h4" sx={{ marginBottom: '20px', fontWeight: 'bold', textAlign: 'center' }}>
+                        Featured Products
+                    </Typography>
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
+                        {products.map(product => (
+                            <div key={product.id} onClick={() => fetchProductDetails(product.id)}>
+                                <ProductCard product={product} />
+                            </div>
+                        ))}
+                    </Box>
+                </Container> */}
 
             </Box>
         </div>
