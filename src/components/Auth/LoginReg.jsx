@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './LoginReg.css';
-import { apiService } from '../globalUtils/ApiHandler';
+import '../styles/LoginReg.css';
+import { apiService } from '../GlobalUtils/ApiHandler';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navigate, useNavigate } from 'react-router-dom';
 
@@ -8,7 +8,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 function LoginReg({ setIsLoggedIn }) {
     const [activeTab, setActiveTab] = useState('login');
     const [loginData, setLoginData] = useState({ username: '', password: '' });
-    const [signupData, setSignupData] = useState({ name: '', email: '', password: '' });
+    const [signupData, setSignupData] = useState({ name: '', email: '', password: '',username: '' });
     const [loginError, setLoginError] = useState('');
     const navigate = useNavigate();
 
@@ -28,6 +28,8 @@ function LoginReg({ setIsLoggedIn }) {
         setSignupData(prevData => ({ ...prevData, [name]: value }));
     };
 
+  
+
     const handleLoginSubmit = async (e) => {
         e.preventDefault();
         console.log('Login Credentials:', loginData.username, loginData.password);
@@ -36,6 +38,8 @@ function LoginReg({ setIsLoggedIn }) {
             const response = await apiService.login(loginData.username, loginData.password);
             if (response.status === 200) {
                 setIsLoggedIn(true);
+                localStorage.setItem('username', loginData.username);
+                localStorage.setItem('password', loginData.password);
                 navigate("/home");
                 localStorage.setItem("isLoggedIn", 'true');
             }
@@ -46,11 +50,23 @@ function LoginReg({ setIsLoggedIn }) {
 
         }
 
-    };
+    };
 
-    const handleSignupSubmit = (e) => {
+    const handleSignupSubmit = async (e) => {
         e.preventDefault();
         console.log('Signup Data:', signupData);
+
+        try {
+            const response = await apiService.signup(signupData);
+            if (response.status === 201) {
+                handleTabChange('login')
+            }
+        } catch (error) {
+            console.log("Error Invalid Crdencials - UNAUTHORIZED USER");
+            // document.getElementById("loginFailed").innerText = "Invalid Crdencials";
+            // setLoginError("Invalid Credentials");
+        }
+
     };
 
     return (
@@ -88,7 +104,7 @@ function LoginReg({ setIsLoggedIn }) {
                                                 required
                                             />
                                         </div>
-                                        <p id="loginFailed" style={{ color: '#ff5e5e', textAlign: 'left' }}>
+                                        <p id="loginFailed" style={{ color: 'red', textAlign: 'left' }}>
                                             {loginError}
                                         </p>
                                         <div className="shopping-button input-box">
@@ -122,10 +138,21 @@ function LoginReg({ setIsLoggedIn }) {
                                         <div className="shopping-input-box">
                                             <i className="fas fa-envelope"></i>
                                             <input
-                                                type="text"
+                                                type="email"
                                                 name="email"
                                                 placeholder="Enter your email"
                                                 value={signupData.email}
+                                                onChange={handleSignupChange}
+                                                required
+                                            />
+                                        </div>
+                                        <div className="shopping-input-box">
+                                            <i className="fas fa-lock"></i>
+                                            <input
+                                                type="text"
+                                                name="username"
+                                                placeholder="Enter your username"
+                                                value={signupData.username}
                                                 onChange={handleSignupChange}
                                                 required
                                             />
@@ -140,7 +167,8 @@ function LoginReg({ setIsLoggedIn }) {
                                                 onChange={handleSignupChange}
                                                 required
                                             />
-                                        </div>1
+                                        </div>
+                                        
                                         <div className="shopping-button input-box">
                                             <input type="submit" value="Signup" />
                                         </div>
